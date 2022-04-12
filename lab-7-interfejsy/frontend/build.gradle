@@ -1,0 +1,43 @@
+plugins {
+  id "com.github.node-gradle.node" version "3.2.1"
+}
+
+group 'pl.pwr'
+version '1.0-SNAPSHOT'
+
+configurations {
+  webResources {
+    canBeConsumed = true
+    canBeResolved = true
+  }
+}
+
+task installGatsbyCli(type: NpmTask) {
+  // install the express package only
+  args = ['install', 'gatsby-cli']
+}
+
+node {
+  download = true
+  npmVersion = "6.14.15"
+  allowInsecureProtocol = true
+  workDir = file("${project.projectDir}/.gradle/nodejs")
+}
+
+task build(type: NpxTask) {
+  dependsOn npmInstall
+  command = 'gatsby'
+  args = ['build']
+}
+
+task develop(type: NpxTask) {
+  dependsOn npmInstall
+  command = 'gatsby'
+  args = ['develop']
+}
+
+artifacts {
+  webResources(file("${projectDir}/public")) {
+    builtBy build
+  }
+}

@@ -1,0 +1,62 @@
+plugins {
+  id 'application'
+}
+
+group 'pl.pwr'
+version '1.0-SNAPSHOT'
+
+repositories {
+  mavenCentral()
+}
+
+configurations {
+  frontendApp
+}
+
+task copyFrontendApp(type: Copy) {
+  from configurations.frontendApp
+  into "$buildDir/frontendApp/frontend"
+}
+
+build.dependsOn(copyFrontendApp)
+run.dependsOn(build)
+
+sourceSets {
+  main {
+    compileClasspath += files("$buildDir/frontendApp")
+    runtimeClasspath += files("$buildDir/frontendApp")
+  }
+}
+
+dependencies {
+  implementation 'io.javalin:javalin-bundle:4.4.0'
+  implementation 'com.google.code.gson:gson:2.9.0'
+  frontendApp project(path: ":frontend", configuration: 'webResources')
+  testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+  testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+application {
+  applicationDefaultJvmArgs = ['-Dport=7070']
+  mainClass = 'pwr.edu.app.Application'
+}
+
+task printSourceSetInformation() {
+
+  doLast {
+    sourceSets.each {srcSet ->
+      println "[" + srcSet.name + "]"
+      print "-->Source directories: " + srcSet.allJava.srcDirs + "\n"
+      print "-->Output directories: " + srcSet.output.classesDirs.files + "\n"
+      print "-->Compile classpath:\n"
+      srcSet.compileClasspath.files.each {
+        print "  " + it.path + "\n"
+      }
+      println ""
+    }
+  }
+}
+
+test {
+  useJUnitPlatform()
+}
