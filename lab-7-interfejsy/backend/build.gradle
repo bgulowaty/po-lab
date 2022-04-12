@@ -37,23 +37,19 @@ dependencies {
 }
 
 application {
-  applicationDefaultJvmArgs = ['-Dport=7070']
   mainClass = 'pwr.edu.app.Application'
 }
 
-task printSourceSetInformation() {
+task srcZip(type: Zip) {
+  outputs.upToDateWhen {false} // Always run
+
+  from projectDir
+  archiveFileName = "lab-7.zip"
+  include 'src/**/*', 'build.gradle'
+  destinationDirectory = layout.buildDirectory.dir('eportal-upload')
 
   doLast {
-    sourceSets.each {srcSet ->
-      println "[" + srcSet.name + "]"
-      print "-->Source directories: " + srcSet.allJava.srcDirs + "\n"
-      print "-->Output directories: " + srcSet.output.classesDirs.files + "\n"
-      print "-->Compile classpath:\n"
-      srcSet.compileClasspath.files.each {
-        print "  " + it.path + "\n"
-      }
-      println ""
-    }
+    println "Path to zip: $archivePath.path"
   }
 }
 
