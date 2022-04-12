@@ -1,21 +1,16 @@
-package pwr.edu.app;
+package pwr.edu.serialization;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
-import com.google.gson.JsonDeserializer;
 import io.javalin.plugin.json.JsonMapper;
 import org.jetbrains.annotations.NotNull;
 
 import java.time.LocalDateTime;
-import java.time.ZonedDateTime;
 
 public class GsonMapper implements JsonMapper {
 
   private static final Gson GSON = new GsonBuilder()
-      .registerTypeAdapter(
-          LocalDateTime.class,
-          (JsonDeserializer<LocalDateTime>) (json, type, jsonDeserializationContext) ->
-              ZonedDateTime.parse(json.getAsJsonPrimitive().getAsString()).toLocalDateTime())
+      .registerTypeAdapter(LocalDateTime.class, LocalDateTimeSerializer.INSTANCE)
       .create();
 
   @NotNull

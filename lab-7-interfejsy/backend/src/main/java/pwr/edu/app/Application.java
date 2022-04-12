@@ -12,6 +12,7 @@ import pwr.edu.http.NoteController;
 import pwr.edu.notes.InMemoryNoteRepository;
 import pwr.edu.notes.NoteRepository;
 import pwr.edu.notes.NoteService;
+import pwr.edu.serialization.GsonMapper;
 
 import static io.javalin.apibuilder.ApiBuilder.delete;
 import static io.javalin.apibuilder.ApiBuilder.get;

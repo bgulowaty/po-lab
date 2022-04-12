@@ -104,21 +104,20 @@ function PricingContent() {
                             mb: 2,
                           }}
                       >
-                        {/*<Typography component="h2" variant="h3" color="text.primary">*/}
-                        {/*  ${tier.price}*/}
-                        {/*</Typography>*/}
-                        {/*<Typography variant="h6" color="text.secondary">*/}
-                        {/*  /mo*/}
-                        {/*</Typography>*/}
                       </Box>
+
                       <Typography
-                          component="li"
+                          variant="subtitle2"
+                          align="left"
+                      >
+                        {note.createdAt}
+                      </Typography>
+                      <Typography
                           variant="subtitle1"
                           align="center"
                       >
                         {note.body}
                       </Typography>
-                      ))}
                     </CardContent>
                     <CardActions>
                       <Button fullWidth variant='contained'
