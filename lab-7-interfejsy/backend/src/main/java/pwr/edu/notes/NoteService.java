@@ -4,9 +4,9 @@ import java.util.List;
 
 public class NoteService {
 
-  private final NoteRepository repository;
+  private final InMemoryNoteRepository repository;
 
-  public NoteService(NoteRepository repository) {this.repository = repository;}
+  public NoteService(InMemoryNoteRepository repository) {this.repository = repository;}
 
   public NoteId addNewNote(NewNote newNote) {
     // validate title

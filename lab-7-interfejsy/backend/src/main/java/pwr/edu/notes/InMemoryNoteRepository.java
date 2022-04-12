@@ -8,11 +8,10 @@ import java.util.Map;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
 
-public class InMemoryNoteRepository implements NoteRepository {
+public class InMemoryNoteRepository {
 
   private final Map<UUID, SavedNote> repo = new ConcurrentHashMap<>();
 
-  @Override
   public UUID save(NewNote note) {
     UUID noteId = UUID.randomUUID();
 
@@ -29,12 +28,10 @@ public class InMemoryNoteRepository implements NoteRepository {
     return noteId;
   }
 
-  @Override
   public void delete(UUID uuid) {
     repo.remove(uuid);
   }
 
-  @Override
   public List<SavedNote> getAll() {
     return Lists.newArrayList(repo.values());
   }
