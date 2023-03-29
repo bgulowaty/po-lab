@@ -1,14 +1,15 @@
 package pl.pwr.wordscounter;
 
-import pl.pwr.common.Page;
+import org.apache.commons.lang3.StringUtils;
 
 public class WordsCounter {
 
-  private final String wordToCount;
+    private WordsCounter() {
+    }
 
-  public WordsCounter(String wordToCount) {this.wordToCount = wordToCount;}
+    public static int count(String text, String wordToCount) {
+        return StringUtils.countMatches(text.toLowerCase(), wordToCount.toLowerCase());
+    }
 
-  int countWordsInPage(Page page) {
-    return 0;
-  }
+
 }
