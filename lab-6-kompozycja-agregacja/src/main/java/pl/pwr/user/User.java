@@ -1,26 +1,29 @@
 package pl.pwr.user;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class User {
-  String username;
-  private final String someArbitraryField = "abc";
-  private UserLocation userLocation;
 
-  public List<Friend> friends = List.of(new Friend("michal", "b"));
+  private final
+  String username;
+
+  UserLocation location;
   public String getUsername() {
     return username;
   }
 
-  public User(String username) {this.username = username;}
+  public User(String username) {
+    this.username = username;
+  }
 
   public User(String username, UserLocation userLocation) {
     this.username = username;
-    this.userLocation = userLocation;
+    this.location = userLocation;
   }
 
-  void changePassword(User changer, String newPassword) {
+  void changePassword(String newPassword) {
 
   }
+
+  private final String password = "wartosc";
 }

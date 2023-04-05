@@ -4,7 +4,7 @@ import pl.pwr.user.User;
 
 import java.util.List;
 
-public class ApplicationArguments {
+public class AppArg {
   public String repositoryPath;
   List<User> users;
 
@@ -16,5 +16,5 @@ public class ApplicationArguments {
         '}';
   }
 
-  public ApplicationArguments(String repositoryPath) {this.repositoryPath = repositoryPath;}
+  public AppArg(String repositoryPath) {this.repositoryPath = repositoryPath;}
 }
