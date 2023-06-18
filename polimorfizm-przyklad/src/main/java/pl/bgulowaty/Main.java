@@ -16,7 +16,7 @@ public class Main {
         RentableItem rentableItem = findFirstRentable(rentalRequest);
 
         if (rentableItem != null) {
-            Price price = rentableItem.calculateRentalPrice(rentalRequest);
+            Price price = rentableItem.calculateRentalPrice(rentalRequest); // polymorphic invocation
 
             System.out.println("You need to pay " + price);
             // process payment
@@ -29,7 +29,7 @@ public class Main {
 
     private static RentableItem findFirstRentable(RentalRequest rentalRequest) {
         return rentalCatalogue.stream()
-                .filter(it -> it.canBeRentedFor(rentalRequest))
+                .filter(it -> it.canBeRentedFor(rentalRequest)) // polymorphic invocation
                 .findFirst()
                 .orElse(null);
     }
